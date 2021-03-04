@@ -3,7 +3,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet(name = "HelloWorldServlet", urlPatterns = "/hello-world")
+@WebServlet(name = "HelloWorldServlet", urlPatterns = "/hello")
 public class HelloWorldServlet extends HttpServlet {
 
     int pageViewCount;
@@ -15,7 +15,7 @@ public class HelloWorldServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
         pageViewCount++;
-        if (name != null) {
+         if (name != null) {
             pageViewCount = 0;
             out.printf("<h1>Hello %s </h1>", name);
         } else {
