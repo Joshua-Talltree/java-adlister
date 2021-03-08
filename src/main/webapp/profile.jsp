@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -13,6 +14,17 @@
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
+<c:choose>
+
+    <c:when test="${param.containsKey('username')}">
+        <p>Welcome, ${param.username}</p>
+    </c:when>
+    <c:otherwise>
+        <p>Not Authorized!!!!</p>
+    </c:otherwise>
+
+</c:choose>
+
 <%@ include file="partials/navbar.jsp" %>
 <form class="container col-6 border-box m-2">
     <div class="form-row">

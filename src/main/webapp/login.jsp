@@ -12,15 +12,30 @@
 <body>
 <%@ include file="partials/navbar.jsp" %>
 
-<form class="container col-6 m-3 justify-content-center">
+<%
+    String wrongCredentialsMessage = "";
+
+    if (request.getMethod().equals("POST")) {
+
+        if (request.getParameter("username").equals("admin") && request.getParameter("userPassword").equals("password")) {
+            response.sendRedirect("/profile.jsp?username=" + request.getParameter("username"));
+        }
+        wrongCredentialsMessage = "Username or Password Invalid";
+    }
+
+%>
+
+<form method="POST" action="login.jsp" class="container col-6 m-3 justify-content-center">
     <div class="form-group">
         <label>Username</label>
-        <label for="exampleInputEmail1"></label><input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label for="username"></label>
+        <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp">
         <small id="emailHelp" class="form-text text-muted">We'll never share your username with anyone else.</small>
     </div>
     <div class="form-group">
         <label>Password</label>
-        <label for="exampleInputPassword1"></label><input type="password" class="form-control" id="exampleInputPassword1">
+        <label for="userPassword"></label>
+        <input type="password" class="form-control" id="userPassword">
     </div>
     <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -28,13 +43,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-<c:if test="${param.username == 'admin'}">
-    <% response.sendRedirect("/profile.jsp"); %>
-</c:if>
-<c:if test="${param.username != 'admin'}">
-
-</c:if>
 
 <%--JS links--%>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
