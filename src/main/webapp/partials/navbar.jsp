@@ -8,5 +8,5 @@
             <li><a href="/login">Login</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+    <div></div><!-- /.container-fluid -->
 </nav>
