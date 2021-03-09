@@ -1,8 +1,8 @@
 package models;
 
-public class Quote extends Author{
+public class Quote {
 
-    private String author;
+    private Author author;
 
     private String content;
 
@@ -13,11 +13,11 @@ public class Quote extends Author{
         this.content = content;
     };
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 

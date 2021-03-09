@@ -5,22 +5,13 @@ import java.util.Date;
 public class Album {
 
     private int id;
-
     private String artist;
-
     private String name;
-
-    private Integer releaseDate;
-
+    private int releaseDate;
     private String genre;
-
     private Double sales;
 
     public Album () {};
-
-    public int getId() {
-        return id;
-    }
 
     public Album (int id, String artist, String name, Integer releaseDate, String genre, Double sales) {
         this.id = id;
@@ -30,12 +21,16 @@ public class Album {
         this.sales = sales;
     };
 
+    public int getId() {
+        return this.id;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
     public String getArtist() {
-        return artist;
+        return this.artist;
     }
 
     public void setArtist(String artist) {
@@ -43,7 +38,7 @@ public class Album {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -51,7 +46,7 @@ public class Album {
     }
 
     public int getReleaseDate() {
-        return releaseDate;
+        return this.releaseDate;
     }
 
     public void setReleaseDate(Integer releaseDate) {
@@ -59,7 +54,7 @@ public class Album {
     }
 
     public String getGenre() {
-        return genre;
+        return this.genre;
     }
 
     public void setGenre(String genre) {
@@ -67,7 +62,7 @@ public class Album {
     }
 
     public Double getSales() {
-        return sales;
+        return this.sales;
     }
 
     public void setSales(Double sales) {
