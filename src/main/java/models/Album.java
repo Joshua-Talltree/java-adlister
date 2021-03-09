@@ -10,7 +10,7 @@ public class Album {
 
     private String name;
 
-    private Date releaseDate;
+    private Integer releaseDate;
 
     private String genre;
 
@@ -22,7 +22,7 @@ public class Album {
         return id;
     }
 
-    public Album (int id, String artist, String name, Date releaseDate, String genre, Double sales) {
+    public Album (int id, String artist, String name, Integer releaseDate, String genre, Double sales) {
         this.id = id;
         this.artist = artist;
         this.releaseDate = releaseDate;
@@ -50,11 +50,11 @@ public class Album {
         this.name = name;
     }
 
-    public Date getReleaseDate() {
+    public int getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(Integer releaseDate) {
         this.releaseDate = releaseDate;
     }
 

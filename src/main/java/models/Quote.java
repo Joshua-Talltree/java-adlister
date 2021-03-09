@@ -1,6 +1,6 @@
 package models;
 
-public class Quote {
+public class Quote extends Author{
 
     private String author;
 
