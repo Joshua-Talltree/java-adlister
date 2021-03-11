@@ -18,7 +18,6 @@ public class AdsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Ads adsDao = DaoFactory.getAdsDao();
         // create a new ad based on the submitted data
         long id = Long.parseLong(request.getParameter("id"));
         long userId = Long.parseLong(request.getParameter("userId"));
@@ -26,7 +25,8 @@ public class AdsServlet extends HttpServlet {
         String description = request.getParameter("description");
         Ad ad = new Ad(id, userId, title, description);
         // persist the new ad
-        adsDao.insert(ad);
+        System.out.println(id + title);
+        DaoFactory.getAdsDao().insert(ad);
         response.sendRedirect("/ads");
     }
 }

@@ -13,7 +13,7 @@ public class ListAdsDao implements Ads {
 
     @Override
     public void insert(Ad ad) {
-
+        this.ads.add(ad);
     }
 
     private List<Ad> generateAds() {

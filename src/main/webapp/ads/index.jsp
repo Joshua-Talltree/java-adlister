@@ -13,7 +13,7 @@
 </head>
 <body>
 <h3>Add you own ads here!</h3>
-<form method="post" action="/ads">
+<form class="container" method="post" action="/ads">
     <label for="id">Id:
         <input name="id" id="id" type="number">
     </label>
@@ -35,20 +35,20 @@
 
 <h3>Here is you list of ads!</h3>
 <c:forEach var="adList" items="${adList}">
-    <div class="adList">
+    <div class="container adList">
         <p>Id: ${adList.id}</p>
         <p>User ID:${adList.userId}</p>
         <p>Title: ${adList.title}</p>
         <p>Description: ${adList.description}</p>
     </div>
 </c:forEach>
-<c:forEach var="ad" items="${ads}">
-    <div class="ad">
-        <p>Id: ${ad.id}</p>
-        <p>User ID:${ad.userId}</p>
-        <p>Title: ${ad.title}</p>
-        <p>Description: ${ad.description}</p>
-    </div>
-</c:forEach>
+<h3>New Ads here!</h3>
+<div class="container">
+    <p>Id: ${adsDao.setId()}</p>
+    <p>User ID:${adsDao.setUserId()}</p>
+    <p>Title: ${adsDao.setTitle()}</p>
+    <p>Description: ${adsDao.setDescription()}</p>
+</div>
+
 </body>
 </html>
