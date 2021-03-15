@@ -9,38 +9,36 @@ public class MySQLUsersDao implements Users {
 
     public MySQLUsersDao(Config config) {
         try {
-            DriverManager.registerDriver(new Driver());
+            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             connection = DriverManager.getConnection(
-                    Config.getUrl(),
-                    Config.getUser(),
-                    Config.getPassword()
+                    config.getUrl(),
+                    config.getUser(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
-            throw new RuntimeException("Error connecting to the database", e);
+            throw new RuntimeException("Error connecting to the database!", e);
         }
     }
 
     @Override
     public User findByUsername(String username) {
-        User user = null;
+        String query = "SELECT * FROM users WHERE username = ? limit 1";
 
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
 
-            if(rs.next()) {
-                user = new User(
-                        rs.getLong("id"),
-                        rs.getString("username"),
-                        rs.getString("email"),
-                        rs.getString("password")
-                );
-            }
+            rs.next();
+            return new User(
+                    rs.getString("username"),
+                    rs.getString("email"),
+                    rs.getString("password")
+
+            );
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving the user by username", e);
         }
-        return user;
     }
 
     @Override
@@ -59,7 +57,7 @@ public class MySQLUsersDao implements Users {
             rs.next();
             newId = rs.getLong(1);
         } catch (SQLException e) {
-            throw new RuntimeException("Error inserting new user into the database");
+            throw new RuntimeException("Error inserting new user", e);
         }
 
         return newId;

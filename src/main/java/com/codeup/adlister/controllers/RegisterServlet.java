@@ -12,6 +12,8 @@ import java.io.IOException;
 
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
+    private Object BCrypt;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
     }
@@ -32,7 +34,12 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         }
 
-        User user = new User(username, email, password);
+        String hashedPass = BCrypt.hashpw(password, BCrypt.password);
+
+        User user = new User();
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPassword(password);
         DaoFactory.getUsersDao().insert(user);
         response.sendRedirect("/login");
     }
